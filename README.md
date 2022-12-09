@@ -1,8 +1,8 @@
 ---
 title: CNNs Interpretation Visualization
-emoji: 🕯
-colorFrom: purple
-colorTo: red
+emoji: 💡
+colorFrom: yellow
+colorTo: green
 sdk: streamlit
 sdk_version: 1.10.0
 app_file: Home.py
