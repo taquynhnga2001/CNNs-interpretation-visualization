@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d5202c200b08978fee68e52e2eaaf26868071d71a681365116e9726d994c3f12
-size 256
+import os
+# os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+
+import streamlit as st
+from transformers import AutoFeatureExtractor, AutoModelForImageClassification
+import torch
+
+st.set_page_config(layout='wide')
+st.title('About')
+
+st.write('Loaded 3 models')
+
+

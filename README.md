@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:64ec7eb74a38e942caa6dc3b16b6e2cdd8fdba340fc0f260b1ffc2627825d7e6
-size 533
+---
+title: CNNs Interpretation Visualization
+emoji: 🕯
+colorFrom: purple
+colorTo: red
+sdk: streamlit
+sdk_version: 1.10.0
+app_file: Home.py
+pinned: false
+---
+
+# Visualizing Interpretations of CNN models: ConvNeXt, ResNet and MobileNet
+
+To be change name: CNNs-interpretation-visualization
+
+This app was built with Streamlit. To run the app, `streamlit run Home.py` in the terminal.
+
+This repo lacks one more folder `data/preprocessed_image_net` which contains 50,000 preprocessed imagenet validation images saved in 5 pickle files.

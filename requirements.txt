@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:11db9a919c5ae02c8466823edd349608bbd3c490ca514cfa24b16434e7aea07b
-size 285
+captum==0.5.0
+deta==1.1.0
+graphviz==0.20.1
+Markdown==3.4.1
+matplotlib==3.6.2
+numpy==1.22.3
+opencv_python_headless==4.6.0.66
+pandas==1.5.2
+Pillow==9.3.0
+plotly==5.11.0
+scipy==1.9.3
+setuptools==65.5.0
+streamlit==1.15.2
+torch==1.10.1
+torchvision==0.11.2
+tqdm==4.64.1
+transformers==4.25.1

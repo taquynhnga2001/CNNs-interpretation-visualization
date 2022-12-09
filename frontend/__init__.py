@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:34811d4931ed1903c27bc1e6b639b0e9cf5f4d0aaff202daa0f853660097739d
-size 138
+import streamlit.components.v1 as components
+
+on_click_graph = components.declare_component(
+    "on_click_graph",
+    path="./frontend"
+)
