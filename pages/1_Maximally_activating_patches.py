@@ -28,7 +28,7 @@ def load_dot_to_graph(filename):
     return graph, dot
     
 st.title('Maximally activating image patches')
-st.write('Visualize image patches that maximize the activation of layers in three models: ConvNeXt, ResNet, MobileNet')
+st.write('Visualize image patches that maximize the activation of layers in ConvNeXt model')
 
 # st.header('ConvNeXt')
 convnext_dot_file = './data/dot_architectures/convnext_architecture.dot'
@@ -130,7 +130,7 @@ if nodes != None:
                         subplot_titles=tuple([f"#{i+1}" for i in range(top_k)]), shared_yaxes=True)
                 else:
                     top_margin = 0
-                    fig = make_subplots(rows=1, cols=num_cols)
+                    fig = make_subplots(rows=1, cols=num_cols, shared_yaxes=True)
                 for col in range(1, num_cols+1):
                     k, c = col-1, row-1
                     img_index = int(top_k_coor_max_[k, c, 3])

@@ -1,5 +1,3 @@
-import sys
-import os
 import PIL
 from PIL import Image
 import numpy as np
@@ -10,8 +8,8 @@ import torch
 from torch.utils.data import TensorDataset
 from torchvision import transforms
 
-dirpath_to_modules = './Visual-Explanation-Methods-PyTorch'
-sys.path.append(dirpath_to_modules)
+# dirpath_to_modules = './Visual-Explanation-Methods-PyTorch'
+# sys.path.append(dirpath_to_modules)
 
 from torchvex.base import ExplanationMethod
 from torchvex.utils.normalization import clamp_quantile
@@ -212,7 +210,7 @@ def fig2img(fig):
     img = Image.open(buf)
     return img
 
-def generate_smoothgrad_mask(image, model_name, model=None, feature_extractor=None, num_samples=25):
+def generate_smoothgrad_mask(image, model_name, model=None, feature_extractor=None, num_samples=25, return_mask=False):
     inputs, prediction_class = feed_forward(model_name, image, model, feature_extractor)
 
     smoothgrad_gen = SmoothGradient(
@@ -230,4 +228,8 @@ def generate_smoothgrad_mask(image, model_name, model=None, feature_extractor=No
     # ori_image = ShowImage(image)
     heat_map_image = ShowHeatMap(smoothgrad_mask)
     masked_image = ShowMaskedImage(smoothgrad_mask, image)
-    return heat_map_image, masked_image
+
+    if return_mask:
+        return heat_map_image, masked_image, smoothgrad_mask
+    else:
+        return heat_map_image, masked_image

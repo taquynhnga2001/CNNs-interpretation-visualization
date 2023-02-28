@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ce4af7987964cdde596ea51e2af55a4f18b804fc77e090cedd3d6ae426c7e401
-size 92
+{
+    "python.analysis.extraPaths": [
+        "./Visual-Explanation-Methods-PyTorch"
+    ]
+}

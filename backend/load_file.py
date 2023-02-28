@@ -19,7 +19,11 @@ def load_json(filename):
         loaded_dict = json.loads(read_file.read())
     loaded_dict = OrderedDict(loaded_dict)
     for k, v in loaded_dict.items():
-        loaded_dict[k] = np.asarray(v)
+        if type(v) == list:
+            loaded_dict[k] = np.asarray(v)
+        else:
+            for k_, v_ in v.items():
+                v[k_] = np.asarray(v_)
     return loaded_dict
 
 class NumpyEncoder(json.JSONEncoder):
@@ -32,6 +36,6 @@ class NumpyEncoder(json.JSONEncoder):
 # save_pickle_to_json('data/layer_infos/resnet_layer_infos.pkl')
 # save_pickle_to_json('data/layer_infos/mobilenet_layer_infos.pkl')
 
-file = load_json('data/layer_infos/convnext_layer_infos.json')
-print(type(file))
-print(type(file['embeddings.patch_embeddings']))
+# file = load_json('data/layer_infos/convnext_layer_infos.json')
+# print(type(file))
+# print(type(file['embeddings.patch_embeddings']))

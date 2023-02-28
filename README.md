@@ -1,7 +1,7 @@
 ---
 title: CNNs Interpretation Visualization
 emoji: 💡
-colorFrom: yellow
+colorFrom: blue
 colorTo: green
 sdk: streamlit
 sdk_version: 1.10.0

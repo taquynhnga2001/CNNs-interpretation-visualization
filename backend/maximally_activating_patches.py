@@ -4,12 +4,14 @@ import streamlit as st
 from backend.load_file import load_json
 
 
-@st.cache(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
+st.cache_data
 def load_activation(filename):
     activation = load_json(filename)
     return activation
 
-@st.cache(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
+@st.cache_data
 def load_dataset(data_index):
     with open(f'./data/preprocessed_image_net/val_data_{data_index}.pkl', 'rb') as file:
         dataset = pickle.load(file)

@@ -14,12 +14,17 @@ from plotly import express as px
 from plotly.subplots import make_subplots
 from tqdm import trange
 
-@st.cache(allow_output_mutation=True)
+import torch
+from transformers import AutoFeatureExtractor, AutoModelForImageClassification
+
+# @st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_dataset(data_index):
     with open(f'./data/preprocessed_image_net/val_data_{data_index}.pkl', 'rb') as file:
         dataset = pickle.load(file)
     return dataset
 
+@st.cache_resource
 def load_dataset_dict():
     dataset_dict = {}
     progress_empty = st.empty()
@@ -32,6 +37,43 @@ def load_dataset_dict():
     progress_empty.empty()
     text_empty.empty()
     return dataset_dict
+
+
+@st.cache_data
+def load_image(image_id):
+    dataset = load_dataset(image_id//10000)
+    image = dataset[image_id%10000]
+    return image
+
+@st.cache_data
+def load_images(image_ids):
+    images = []
+    for image_id in image_ids:
+        image = load_image(image_id)
+        images.append(image)
+    return images
+
+
+# @st.cache(allow_output_mutation=True, suppress_st_warning=True, show_spinner=False)
+@st.cache_resource
+def load_model(model_name):
+    with st.spinner(f"Loading {model_name} model! This process might take 1-2 minutes..."):
+        if model_name == 'ResNet':
+            model_file_path = 'microsoft/resnet-50'
+            feature_extractor = AutoFeatureExtractor.from_pretrained(model_file_path, crop_pct=1.0)
+            model = AutoModelForImageClassification.from_pretrained(model_file_path)
+            model.eval()
+        elif model_name == 'ConvNeXt':
+            model_file_path = 'facebook/convnext-tiny-224'
+            feature_extractor = AutoFeatureExtractor.from_pretrained(model_file_path, crop_pct=1.0)
+            model = AutoModelForImageClassification.from_pretrained(model_file_path)
+            model.eval()
+        else:
+            model = torch.hub.load('pytorch/vision:v0.10.0', 'mobilenet_v2', pretrained=True)
+            model.eval()
+            feature_extractor = None
+    return model, feature_extractor
+
 
 def make_grid(cols=None,rows=None):
     grid = [0]*rows
